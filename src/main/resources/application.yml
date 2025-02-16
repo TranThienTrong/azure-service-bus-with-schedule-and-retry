@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    function:
+      definition: produce1;consume1;consume2
+    stream:
+      defaultBinder: servicebus
+      binders:
+        servicebus:
+          type: servicebus
+          environment:
+            spring:
+              cloud:
+                azure:
+                  servicebus:
+                    connection-string: "Endpoint=sb://tranthientrongit-submission.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=XwuGgN/BEt+gBwzjdeLrb5RtH5TS+3CVk+ASbK/H/Tw="
+      # Example of binding names for functional style
+      bindings:
+        produce1-out-0:
+          destination: submit
+          binder: servicebus
+        consume1-in-0:
+          destination: submit
+          binder: servicebus
